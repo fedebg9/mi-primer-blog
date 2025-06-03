@@ -1,39 +1,44 @@
-
+{% load static %}
+<html>
 <head>
     <title>NBA</title>
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <style>
         .filtro-usuarios {
             margin: 15px 0;
             padding: 10px;
-            background: #FDB927; 
+            background: #fff; 
             text-align: center;
         }
         .usuario-filtro {
             display: inline-block;
             margin-right: 10px;
             padding: 5px 10px;
-            background: #000000; 
-            color: #FDB927;
+            background: #fff; 
+            color: #000;
             text-decoration: none;
             border-radius: 3px;
         }
         .usuario-filtro.activo {
-            background: #1D428A; 
-            color: #FFFFFF; 
+            background: #eee; 
+            color: #000; 
         }
         .limpiar-filtro {
             display: inline-block;
             margin-left: 10px;
-            color: #1D428A; 
+            color: #000; 
         }
         h1 {
-            color: #FDB927; 
+            color: inherit; 
         }
     </style>
 </head>
-<body style="background: #000000;">
-    <div style="background: #1D428A;">
-            <h1 style="text-align: center; color: #FDB927;"><a href="/" style="color: #FDB927; text-decoration: none;">Blog de Fede</a></h1>
+<body>
+    <div>
+            <h1><a>Blog de Fede</a></h1>
         </div>
         <!-- Filtro por usuario usando enlaces -->
         <div class="filtro-usuarios">
@@ -53,19 +58,24 @@
         {% endfor %}
     </div>
     <div>
-        <h1>  Equipos NBA  </h1>
+        <h1> <a> Equipos NBA </a> </h1>
     </div>
 
-    <div>
-        {% for publicacion in publicaciones %}
-        <div>
-        
-        <h2 style= "color: #000000" ><a href="/" style="color: #ffffff; font-size: 24px; text-decoration: none;"> {{ publicacion.equipo }}</a></h2>
-        <p style= "color: #FDB927">{{ publicacion.jugadores|linebreaksbr }}</p>
-        <p style="color: #FDB927; font-size: 12px;">Publicado: {{ publicacion.fecha_publicacion }}</p>
-        {% endfor %}
-
-        </div> 
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            {% for publicacion in publicaciones %}
+                <div class="post">
+                    <div class="date">
+                        <p>publicado: {{ publicacion.fecha_publicacion }}</p>
+                    </div>
+                    <h2><a href="">{{ publicacion.equipo }}</a></h2>
+                    <p>{{ publicacion.jugadores|linebreaksbr }}</p>
+                    <hr>
+                </div>
+            {% endfor %}
+        </div>
     </div>
+</div>
 </body>
 </html>
