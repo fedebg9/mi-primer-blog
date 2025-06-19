@@ -1,0 +1,120 @@
+{% load static %}
+<html>
+<head>
+    <title>NBA</title>
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <style>
+        .filtro-usuarios {
+            margin: 15px 0;
+            padding: 10px;
+            background: #fff; 
+            text-align: center;
+        }
+        .usuario-filtro {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 5px 10px;
+            background: #fff; 
+            color: #000;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+        .usuario-filtro.activo {
+            background: #eee; 
+            color: #000; 
+        }
+        .limpiar-filtro {
+            display: inline-block;
+            margin-left: 10px;
+            color: #000; 
+        }
+        h1 {
+            color: inherit; 
+            text-align: center;
+        }
+        .centrado {
+            display: flex;
+            justify-content: center;
+        }
+        .post {
+            margin: 0 auto;
+            float: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1><a>Equipos </a></h1>
+    </div>
+    <div class="centrado">
+        <img src="{% static 'img/nba.png' %}" alt="Logo NBA" style="max-width: 150px; margin-top: 10px;">
+    </div>
+    <!-- Filtro por usuario usando enlaces -->
+    <div class="filtro-usuarios">
+        <strong>Autor de la publicacion:</strong>
+        <!-- Opción "Todos" -->
+        <a href="?" class="usuario-filtro {% if not usuario_activo %}activo{% endif %}">
+            Todos
+        </a>
+        <!-- Opciones por usuario -->
+        {% for usuario in usuarios %}
+            <a href="?usuario={{ usuario.id }}"
+            class="usuario-filtro {% if usuario_activo == usuario.id %}activo{% endif %}">
+                {{ usuario.username }}
+            </a>
+        {% endfor %}
+    </div>
+    
+    <div class="content container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-md-offset-2">
+                {% for publicacion in equi %}
+                    <div class="post">
+
+                        <div class="date">
+                            <p>Fecha y hora de publicacion: {{ publicacion.fecha_publicacion }}</p>
+                        </div>
+
+                        <h2><a href="">{{ publicacion.equipo }}</a></h2>
+
+                        <div>
+                            <h4>Entrenador actual:</h4>
+                        </div>
+
+                        <p>{{ publicacion.entrenador|linebreaksbr }}</p>
+
+                        <div>
+                            <h4>Quinteto titular en la ultima temporada:</h4>
+                        </div>
+
+                        <p>{{ publicacion.jugadores|linebreaksbr }}</p>
+
+                        <div>
+                            <h3>Record de partidos en la ultima temporada:</h3>
+                        </div>
+
+                        <p>
+                            {{ publicacion.partidos_ganados_en_la_temporada|linebreaksbr }}-{{ publicacion.partidos_perdidos_en_la_temporada |linebreaksbr }}
+                        </p>
+
+                        <div>
+                            <h4>Datos sobre el equipo:</h4>
+                        </div>
+
+                        <p>{{ publicacion.datos|linebreaksbr }}</p>
+
+                        <div class="date">
+                            <p>Autor: {{ publicacion.autor.username }}</p>
+                        </div>
+                        
+                        <hr>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

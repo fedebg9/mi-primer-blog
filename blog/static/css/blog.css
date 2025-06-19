@@ -1,5 +1,5 @@
 .page-header {
-    background-color: #C25100;
+    background-color: #ef6a0b;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -22,7 +22,7 @@ h1, h2, h3, h4 {
 }
 
 .date {
-    color: #828282;
+    color: #a00e0e;
 }
 
 .save {
@@ -37,7 +37,7 @@ h1, h2, h3, h4 {
 .top-menu,
 .top-menu:hover,
 .top-menu:visited {
-    color: #ffffff;
+    color: #010101;
     float: right;
     font-size: 26pt;
     margin-right: 20px;
@@ -49,5 +49,5 @@ h1, h2, h3, h4 {
 
 .post h2 a,
 .post h2 a:visited {
-    color: #000000;
+    color: #722626;
 }
